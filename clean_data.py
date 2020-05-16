@@ -155,3 +155,6 @@ line_list_data_raw_df['symptom'].fillna(symptom.most_common(2)[1][0],inplace=Tru
 
 # missing data visualization
 msno.matrix(df=line_list_data_raw_df, fontsize=16)
+
+
+line_list_data_raw_df.to_csv('data/COVID19_line_list_data_cleaned.csv')
