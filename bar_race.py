@@ -184,7 +184,7 @@ def bar_chart_frame(
 
 
 timeline_event = {
-    '01//2020': 'WuHan declared lockdown.',
+    '01/30/2020': 'WuHan declared lockdown.',
     '01/31/2020': 'Italian suspended all flights from China',
     '02/02/2020': 'Trump restricts on any foreigners from entering the U.S',
     '03/13/2020': 'China sent medical supplies to Italy',
