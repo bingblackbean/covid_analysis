@@ -9,7 +9,7 @@ import numpy as np
 # add ffmpeg path to matplotlibrc
 plt.rcParams['animation.ffmpeg_path'] = r'C:\Users\renb\Downloads\ffmpeg-20200323-ba698a2-win64-static\ffmpeg-20200323-ba698a2-win64-static\bin\ffmpeg.exe'
 # read data
-covid19_data_file = 'data/COVID_19_data.csv'
+covid19_data_file = 'covid_analysis_book/data/COVID_19_data.csv'
 covid19_data_df = pd.read_csv(covid19_data_file)
 # handle the countries data
 df_country = covid19_data_df.groupby(

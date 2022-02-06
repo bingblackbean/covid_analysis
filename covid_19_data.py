@@ -4,7 +4,7 @@ import pandas as pd
 from labellines import labelLines
 from matplotlib.dates import date2num
 
-covid19_data_file = 'data/COVID_19_data.csv'
+covid19_data_file = 'covid_analysis_book/data/COVID_19_data.csv'
 covid19_data_df = pd.read_csv(covid19_data_file)
 
 # get numeric statistics

@@ -7,7 +7,7 @@ from wordcloud import WordCloud
 import jieba
 
 # read the data
-line_list_data_cleaned_file = 'data/COVID19_line_list_data_cleaned.csv'
+line_list_data_cleaned_file = 'covid_analysis_book/data/COVID19_line_list_data_cleaned.csv'
 line_list_data_raw_df = pd.read_csv(line_list_data_cleaned_file)
 
 # prepare the text by using str.cat
@@ -35,7 +35,7 @@ print(wordcloud.words_)
 print(wordcloud.process_text(all_symptoms))
 
 # modern wordcloud
-mask = np.array(Image.open('data/human_body_shape.png'))
+mask = np.array(Image.open('covid_analysis_book/data/human_body_shape.png'))
 print(mask)
 wordcloud = WordCloud(
     background_color="white",
@@ -56,7 +56,7 @@ plt.show()
 
 
 
-mask = np.array(Image.open('data/robot.png'))
+mask = np.array(Image.open('covid_analysis_book/data/robot.png'))
 all_summary = line_list_data_raw_df['summary'].str.cat(sep=',')
 image_colors = ImageColorGenerator(mask)
 wordcloud = WordCloud(

@@ -2,7 +2,7 @@ import plotly.graph_objects as go
 from collections import Counter
 import missingno as msno
 import pandas as pd
-line_list_data_file = 'data/COVID19_line_list_data.csv'
+line_list_data_file = 'covid_analysis_book/data/COVID19_line_list_data.csv'
 
 
 line_list_data_raw_df = pd.read_csv(line_list_data_file)
