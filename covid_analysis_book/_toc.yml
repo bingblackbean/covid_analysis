@@ -1,0 +1,10 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+parts:
+  - caption: Use Logic Handling Missing Data
+    # numbered: True  # Only applies to chapters in Part 1.
+    chapters:
+    - file: notebook/COVID_EDA.ipynb
