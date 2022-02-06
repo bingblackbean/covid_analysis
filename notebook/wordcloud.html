@@ -1,0 +1,816 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Step by Step to Build WordCloud for COVID &#8212; COVID-19 Analysis</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Use Logic to Handle Missing Data" href="COVID_EDA.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/data_amber.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">COVID-19 Analysis</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   COVID Data Analysis
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Use Logic Handling Missing Data
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="COVID_EDA.html">
+   Use Logic to Handle Missing Data
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Step by Step to Make WordCloud
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Step by Step to Build WordCloud for COVID
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/notebook/wordcloud.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/bingblackbean/covid_eda"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/bingblackbean/covid_eda/issues/new?title=Issue%20on%20page%20%2Fnotebook/wordcloud.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/bingblackbean/covid_eda/master?urlpath=tree/docs/notebook/wordcloud.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Step by Step to Build WordCloud for COVID
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#get-hands-dirty">
+   Get Hands Dirty
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#quick-start">
+   Quick Start
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fancy-wordcloud">
+   Fancy WordCloud
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#colorful-wordcloud">
+   Colorful WordCloud
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#to-recap">
+   To Recap
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Step by Step to Build WordCloud for COVID</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Step by Step to Build WordCloud for COVID
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#get-hands-dirty">
+   Get Hands Dirty
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#quick-start">
+   Quick Start
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fancy-wordcloud">
+   Fancy WordCloud
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#colorful-wordcloud">
+   Colorful WordCloud
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#to-recap">
+   To Recap
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="section" id="step-by-step-to-build-wordcloud-for-covid">
+<h1>Step by Step to Build WordCloud for COVID<a class="headerlink" href="#step-by-step-to-build-wordcloud-for-covid" title="Permalink to this headline">¶</a></h1>
+<p>We have performed cleaning and general analysis on the COVID19_line_list dataset.
+link:</p>
+<p>In this article we will analyze how wordcloud can be used to present textual information.</p>
+<p>Simply put, a wordcloud is a visualization of important words. There are two important text columns in the COVID19_line_list_data_cleaned dataset, <code class="docutils literal notranslate"><span class="pre">symbols</span> <span class="pre">(symptoms)</span></code> and <code class="docutils literal notranslate"><span class="pre">summary</span> <span class="pre">(summary)</span></code>. We can ask two quick questions:</p>
+<ul class="simple">
+<li><p>What are the main symptoms of COVID19</p></li>
+<li><p>What is the main content of the text summary</p></li>
+</ul>
+<p>We will answer both of these questions with wordcloud.</p>
+<p>Wordcloud is a package dedicated to making word clouds with Python. The installation method is very simple, just <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code>.</p>
+</div>
+<div class="section" id="get-hands-dirty">
+<h1>Get Hands Dirty<a class="headerlink" href="#get-hands-dirty" title="Permalink to this headline">¶</a></h1>
+<p>we are going to use preprocessed dataset in my previous post, which is neat and clean.
+As always, import modules before calling them.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">from</span> <span class="nn">wordcloud</span> <span class="kn">import</span> <span class="n">ImageColorGenerator</span>
+<span class="kn">from</span> <span class="nn">wordcloud</span> <span class="kn">import</span> <span class="n">WordCloud</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># read the data</span>
+<span class="n">line_list_data_cleaned_file</span> <span class="o">=</span> <span class="s1">&#39;../data/COVID19_line_list_data_cleaned.csv&#39;</span>
+<span class="n">line_list_data_raw_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">line_list_data_cleaned_file</span><span class="p">)</span>
+<span class="n">line_list_data_raw_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Unnamed: 0</th>
+      <th>id</th>
+      <th>case_in_country</th>
+      <th>reporting date</th>
+      <th>summary</th>
+      <th>location</th>
+      <th>country</th>
+      <th>gender</th>
+      <th>age</th>
+      <th>symptom_onset</th>
+      <th>...</th>
+      <th>hosp_visit_date</th>
+      <th>exposure_start</th>
+      <th>exposure_end</th>
+      <th>visiting Wuhan</th>
+      <th>from Wuhan</th>
+      <th>death</th>
+      <th>recovered</th>
+      <th>symptom</th>
+      <th>source</th>
+      <th>link</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>1</td>
+      <td>-1.0</td>
+      <td>2020-01-20</td>
+      <td>First confirmed imported COVID-19 pneumonia pa...</td>
+      <td>Shenzhen, Guangdong</td>
+      <td>China</td>
+      <td>male</td>
+      <td>66.0</td>
+      <td>2020-01-03</td>
+      <td>...</td>
+      <td>2020-01-11</td>
+      <td>2019-12-29</td>
+      <td>2020-01-04</td>
+      <td>1</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>fever</td>
+      <td>Shenzhen Municipal Health Commission</td>
+      <td>http://wjw.sz.gov.cn/wzx/202001/t20200120_1898...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>2</td>
+      <td>-1.0</td>
+      <td>2020-01-20</td>
+      <td>First confirmed imported COVID-19 pneumonia pa...</td>
+      <td>Shanghai</td>
+      <td>China</td>
+      <td>female</td>
+      <td>56.0</td>
+      <td>2020-01-15</td>
+      <td>...</td>
+      <td>2020-01-15</td>
+      <td>2020-01-06</td>
+      <td>2020-01-12</td>
+      <td>0</td>
+      <td>1.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>fever</td>
+      <td>Official Weibo of Shanghai Municipal Health Co...</td>
+      <td>https://www.weibo.com/2372649470/IqogQhgfa?fro...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>3</td>
+      <td>-1.0</td>
+      <td>2020-01-21</td>
+      <td>First confirmed imported cases in Zhejiang: pa...</td>
+      <td>Zhejiang</td>
+      <td>China</td>
+      <td>male</td>
+      <td>46.0</td>
+      <td>2020-01-04</td>
+      <td>...</td>
+      <td>2020-01-17</td>
+      <td>2019-12-26</td>
+      <td>2020-01-03</td>
+      <td>0</td>
+      <td>1.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>fever</td>
+      <td>Health Commission of Zhejiang Province</td>
+      <td>http://www.zjwjw.gov.cn/art/2020/1/21/art_1202...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>4</td>
+      <td>-1.0</td>
+      <td>2020-01-21</td>
+      <td>new confirmed imported COVID-19 pneumonia in T...</td>
+      <td>Tianjin</td>
+      <td>China</td>
+      <td>female</td>
+      <td>60.0</td>
+      <td>2020-01-15</td>
+      <td>...</td>
+      <td>2020-01-19</td>
+      <td>2020-01-06</td>
+      <td>2020-01-19</td>
+      <td>1</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>fever</td>
+      <td>人民日报官方微博</td>
+      <td>https://m.weibo.cn/status/4463235401268457?</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>5</td>
+      <td>-1.0</td>
+      <td>2020-01-21</td>
+      <td>new confirmed imported COVID-19 pneumonia in T...</td>
+      <td>Tianjin</td>
+      <td>China</td>
+      <td>male</td>
+      <td>58.0</td>
+      <td>2020-01-10</td>
+      <td>...</td>
+      <td>2020-01-14</td>
+      <td>2020-01-01</td>
+      <td>2020-01-14</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>fever</td>
+      <td>人民日报官方微博</td>
+      <td>https://m.weibo.cn/status/4463235401268457?</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 21 columns</p>
+</div></div></div>
+</div>
+<p>What we need to analyze is the information in the symbol and summary columns.</p>
+<p>The text analyzed by wordcloud must be in str format, so we need to concatenate all data in symbol column into str format.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># prepare the text by using str.cat</span>
+<span class="n">all_symptoms</span> <span class="o">=</span> <span class="n">line_list_data_raw_df</span><span class="p">[</span><span class="s1">&#39;symptom&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">sep</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">all_symptoms</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;str&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="quick-start">
+<h1>Quick Start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h1>
+<p>Thanks to the repo: <a class="reference external" href="https://github.com/amueller/word_cloud">https://github.com/amueller/word_cloud</a>, it is very handy to generate wordcloud with it,at least, display something.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fast show wordcloud</span>
+<span class="n">wordcloud</span> <span class="o">=</span> <span class="n">WordCloud</span><span class="p">()</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">all_symptoms</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">wordcloud</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;bilinear&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/wordcloud_7_0.png" src="../_images/wordcloud_7_0.png" />
+</div>
+</div>
+<p>Not perfect but at least we get a word cloud.</p>
+<p>We realize some problems exising with above code:</p>
+<ul class="simple">
+<li><p>Some words are too small to be seen</p></li>
+<li><p>Why are there two fevers?</p></li>
+<li><p>The font is so blurry, can we make it much clearer?</p></li>
+</ul>
+<p>Let us move on to manage them.
+The wordCould class has some default parameters, such as <code class="docutils literal notranslate"><span class="pre">min_font_size</span></code> to control the minimum word font size, and the pixel size is adjusted by width and height.</p>
+<p>The default value of  <code class="docutils literal notranslate"><span class="pre">collocations</span></code> is True, which is used to combine texts with equal importance/frequency.</p>
+<p>By adjusting these parameters, we can easily improve our word cloud picture.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># change the resolution and cancel the collocations</span>
+<span class="n">wordcloud</span> <span class="o">=</span> <span class="n">WordCloud</span><span class="p">(</span>
+    <span class="n">min_font_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span>
+    <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span>
+    <span class="n">collocations</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">all_symptoms</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">wordcloud</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/wordcloud_9_0.png" src="../_images/wordcloud_9_0.png" />
+</div>
+</div>
+<p>A classic version of the wordcloud is polished, and it looks very good.
+We also get the answer to our first question: <em><strong>fever and cough are the most common symptoms</strong></em>.</p>
+</div>
+<div class="section" id="fancy-wordcloud">
+<h1>Fancy WordCloud<a class="headerlink" href="#fancy-wordcloud" title="Permalink to this headline">¶</a></h1>
+<p>Here is a picture of the human body, and we can also tag all these symptoms to describe the portraits of human body.
+To do this, we need to use the mask parameter of wordcloud.</p>
+<p>As its name shows, mask is used to mask some pixels.</p>
+<p>Load the image and convert it to an array as a mask. We can see mask array constist lots of <code class="docutils literal notranslate"><span class="pre">255</span> <span class="pre">255</span> <span class="pre">255</span></code> which is very good as these means white color.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># modern wordcloud</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;../data/human_body_shape.png&#39;</span><span class="p">))</span>
+<span class="n">wordcloud</span> <span class="o">=</span> <span class="n">WordCloud</span><span class="p">(</span>
+    <span class="n">background_color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">,</span>
+    <span class="n">min_font_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">width</span><span class="o">=</span><span class="mi">1600</span><span class="p">,</span>
+    <span class="n">height</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span>
+    <span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">,</span>
+    <span class="n">collocations</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">contour_width</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">contour_color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">all_symptoms</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">wordcloud</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/wordcloud_12_0.png" src="../_images/wordcloud_12_0.png" />
+</div>
+</div>
+<p>The plot looks a little better than the classic one, but there are still some flaws.</p>
+<p>We can see a lot of blank spaces in the outline of the body, this is because the number of  symptoms is relatively small and cannot fill up the image.</p>
+</div>
+<div class="section" id="colorful-wordcloud">
+<h1>Colorful WordCloud<a class="headerlink" href="#colorful-wordcloud" title="Permalink to this headline">¶</a></h1>
+<p>Obviously, the amount of information in the <code class="docutils literal notranslate"><span class="pre">summary</span></code> column is much larger than that of the <code class="docutils literal notranslate"><span class="pre">symbol</span></code>.
+This time we choose a color image (robot) and run the code again without any changes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;../data/robot.png&#39;</span><span class="p">))</span>
+<span class="n">all_summary</span> <span class="o">=</span> <span class="n">line_list_data_raw_df</span><span class="p">[</span><span class="s1">&#39;summary&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">sep</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+<span class="n">image_colors</span> <span class="o">=</span> <span class="n">ImageColorGenerator</span><span class="p">(</span><span class="n">mask</span><span class="p">)</span>
+<span class="n">wordcloud</span> <span class="o">=</span> <span class="n">WordCloud</span><span class="p">(</span>
+    <span class="n">background_color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">,</span>
+    <span class="n">min_font_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span>
+    <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span>
+    <span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">,</span>
+    <span class="n">collocations</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">contour_width</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">contour_color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">all_summary</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span>
+    <span class="n">wordcloud</span><span class="o">.</span><span class="n">recolor</span><span class="p">(</span>
+        <span class="n">color_func</span><span class="o">=</span><span class="n">image_colors</span><span class="p">),</span>
+    <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;bilinear&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="c1"># refer to https://www.datacamp.com/community/tutorials/wordcloud-python</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/wordcloud_15_0.png" src="../_images/wordcloud_15_0.png" />
+</div>
+</div>
+<p>Oops, where is my lovely robot? Why are there only two eyes and a few front teeth?</p>
+<p>There must be something wrong with the mask.</p>
+<p>Let’s print the created mask matrix. It is full of <em><strong>zeros</strong></em>. The datacamp blog gives a explaination [<a class="reference external" href="https://www.datacamp.com/community/tutorials/wordcloud-python">https://www.datacamp.com/community/tutorials/wordcloud-python</a>]:</p>
+<p><code class="docutils literal notranslate"><span class="pre">The</span> <span class="pre">way</span> <span class="pre">the</span> <span class="pre">masking</span> <span class="pre">functions</span> <span class="pre">works</span> <span class="pre">is</span> <span class="pre">that</span> <span class="pre">it</span> <span class="pre">requires</span> <span class="pre">all</span> <span class="pre">white</span> <span class="pre">part</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">mask</span> <span class="pre">should</span> <span class="pre">be</span> <span class="pre">255</span> <span class="pre">not</span> <span class="pre">0</span> <span class="pre">(integer</span> <span class="pre">type).</span> <span class="pre">This</span> <span class="pre">value</span> <span class="pre">represents</span> <span class="pre">the</span> <span class="pre">&quot;intensity&quot;</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">pixel.</span> <span class="pre">Values</span> <span class="pre">of</span> <span class="pre">255</span> <span class="pre">are</span> <span class="pre">pure</span> <span class="pre">white,</span> <span class="pre">whereas</span> <span class="pre">values</span> <span class="pre">of</span> <span class="pre">1</span> <span class="pre">are</span> <span class="pre">black.</span> <span class="pre">Here,</span> <span class="pre">you</span> <span class="pre">can</span> <span class="pre">use</span> <span class="pre">the</span> <span class="pre">provided</span> <span class="pre">function</span> <span class="pre">below</span> <span class="pre">to</span> <span class="pre">transform</span> <span class="pre">your</span> <span class="pre">mask</span> <span class="pre">if</span> <span class="pre">your</span> <span class="pre">mask</span> <span class="pre">has</span> <span class="pre">the</span> <span class="pre">same</span> <span class="pre">format</span> <span class="pre">as</span> <span class="pre">above.</span> <span class="pre">Notice</span> <span class="pre">if</span> <span class="pre">you</span> <span class="pre">have</span> <span class="pre">a</span> <span class="pre">mask</span> <span class="pre">that</span> <span class="pre">the</span> <span class="pre">background</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">0,</span> <span class="pre">but</span> <span class="pre">1</span> <span class="pre">or</span> <span class="pre">2,</span> <span class="pre">adjust</span> <span class="pre">the</span> <span class="pre">function</span> <span class="pre">to</span> <span class="pre">match</span> <span class="pre">your</span> <span class="pre">mask.</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mask</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        ...,
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0]],
+
+       [[0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        ...,
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0]],
+
+       [[0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        ...,
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0]],
+
+       ...,
+
+       [[0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        ...,
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0]],
+
+       [[0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        ...,
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0]],
+
+       [[0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        ...,
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0]]], dtype=uint8)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The solution is quite straightforward by replacing 0 with 255, and then remake the wordcloud.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mask</span><span class="p">[</span><span class="n">mask</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">255</span>
+<span class="n">image_colors</span> <span class="o">=</span> <span class="n">ImageColorGenerator</span><span class="p">(</span><span class="n">mask</span><span class="p">)</span>
+<span class="n">wordcloud</span> <span class="o">=</span> <span class="n">WordCloud</span><span class="p">(</span>
+    <span class="n">background_color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">,</span>
+    <span class="n">min_font_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span>
+    <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span>
+    <span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">,</span>
+    <span class="n">collocations</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">contour_width</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">contour_color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">all_summary</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span>
+    <span class="n">wordcloud</span><span class="o">.</span><span class="n">recolor</span><span class="p">(</span>
+        <span class="n">color_func</span><span class="o">=</span><span class="n">image_colors</span><span class="p">),</span>
+    <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;bilinear&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/wordcloud_19_0.png" src="../_images/wordcloud_19_0.png" />
+</div>
+</div>
+<p>The cute robot finally appears.</p>
+<p>Returning to the question we mentioned at the beginning, we can see that the summary is mainly about new confirmed cases of COVID, and the patient may be related to Wuhan.
+And it seems that more males than females are recorded.</p>
+<p>So far, our two questions have been answered through the wordcloud analysis.</p>
+</div>
+<div class="section" id="to-recap">
+<h1>To Recap<a class="headerlink" href="#to-recap" title="Permalink to this headline">¶</a></h1>
+<p>This post introduces how to generate wordcloud in classic way and fancy version. By using wordcloud, we can get the key information of massive text content at a glance.</p>
+<p>We also buried some of the pits in the word cloud production process:</p>
+<ul class="simple">
+<li><p>screen resolution problem</p></li>
+<li><p>reduplication problem</p></li>
+<li><p>The maksing problem of color pictures</p></li>
+</ul>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "env"
+        },
+        kernelOptions: {
+            kernelName: "env",
+            path: "./notebook"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'env'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="COVID_EDA.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Use Logic to Handle Missing Data</p>
+        </div>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By BingBlackBean<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
