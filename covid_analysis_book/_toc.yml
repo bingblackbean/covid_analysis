@@ -8,3 +8,7 @@ parts:
     # numbered: True  # Only applies to chapters in Part 1.
     chapters:
     - file: notebook/COVID_EDA.ipynb
+  - caption: Step by Step to Make WordCloud
+    # numbered: True  # Only applies to chapters in Part 1.
+    chapters:
+    - file: notebook/wordcloud.ipynb
